@@ -32,7 +32,7 @@ class Solution:
 
     def cost(self):
         scheduling = [[] for i in range(self.g.n_processors)]
-        for i in range(self.g.n_tasks):
+        for i in range(len(self.tasks)):
             p = i % self.g.n_processors
             scheduling[p].append(self.tasks[i])
         
@@ -43,7 +43,7 @@ class Solution:
         current_total_cost = 0
         time_taken_per_processor = [0 for i in range(self.g.n_processors)]
 
-        for i in range(self.g.n_tasks):
+        for i in range(len(self.tasks)):
             task = self.tasks[i]
             p = i % self.g.n_processors
 

@@ -35,8 +35,6 @@ def GRASP(g: TASK_SCHEDULING, execution_time: int, alpha: float) -> Solution:
             if new_sol.cost() < best_sol.cost():
                 best_sol = new_sol
 
-        # TODO implementar outro operador
-
         return best_sol
 
     def top_level_scheduling():
@@ -82,23 +80,31 @@ def GRASP(g: TASK_SCHEDULING, execution_time: int, alpha: float) -> Solution:
 
         while(len(CL) > 0):
             # Only allow in CL tasks that already have all their dependencies fulfilled
-            filtered_CL = []
-            for t in CL:
-                if is_every_dependecy_in_solution(t, solution):
-                    filtered_CL.append(t)
+            
+            filtered_CL = list(filter(partial(is_every_dependecy_in_solution, solution=solution), CL))
             if filtered_CL is None or len(filtered_CL) == 0:
                 print("ERROR: filtered_CL is empty")
 
-            RCL_size = math.ceil(len(CL) * alpha) # TODO ajeitar o cáculo que usa alpha pra incluir o custo das soluções
-            RCL = filtered_CL[:RCL_size]
+            aux_sol_list = [Solution(solution.tasks + [e.identifier], g) for e in filtered_CL]
+            aux_sol_list.sort(key = lambda x : x.cost())
+
+            cost_threshold = aux_sol_list[0].cost() + alpha * (aux_sol_list[-1].cost() - aux_sol_list[0].cost()) 
+
+            def filter_aux_RCL(sol: Solution):
+                return sol.cost() <= cost_threshold
+
+            RCL = list(filter(filter_aux_RCL, aux_sol_list))
+
             random.shuffle(RCL)
-            element_to_be_added = RCL[0]
+            element_to_be_added = RCL[0].tasks[-1]
 
-            solution.tasks.append(element_to_be_added.identifier)
-
-            CL.remove(element_to_be_added)
+            solution = RCL[0]
+     
+            CL.remove(g.tasks[element_to_be_added])
         
         return solution
+
+    incumbent_solution = constructive_heuristic()
 
     # Main GRASP loop
     while total_seconds < execution_time:
