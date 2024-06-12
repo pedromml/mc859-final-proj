@@ -9,6 +9,14 @@ def main(instance: str, seconds: int, solver: str):
     graph = read_instance(instance)
     if solver == 'GRASP':
         sol = GRASP(graph, seconds, 0.3)
+    if solver == 'GRASP_INTEN':
+        sol = GRASP(graph, seconds, 0.3, pop_in_construction=True)
+    if solver == 'GRASP_DIVER':
+        sol = GRASP(graph, seconds, 0.3, diver=True)
+    if solver == 'GRASP_INTEN_DIVER':
+        sol = GRASP(graph, seconds, 0.3, pop_in_construction=True, diver=True)
+    if solver == 'GA':
+        sol = GA(graph, seconds, len(graph.tasks))
 
     if not sol.is_complete():
         print(f"Solution for {solver} is not complete")

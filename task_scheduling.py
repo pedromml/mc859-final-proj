@@ -67,6 +67,16 @@ class Solution:
 
         return makespan # TODO
 
+    def is_feasible(self):
+        used_tasks = []
+        for t in self.tasks:
+            if t not in used_tasks:
+                for dep in self.g.dependency_list[t]:
+                    if dep not in used_tasks:
+                        return False
+                used_tasks.append(t)
+        return True
+
     def is_complete(self):
         # Has every task in the solution
         used_tasks = []
