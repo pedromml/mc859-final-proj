@@ -31,6 +31,7 @@ class Solution:
     g: TASK_SCHEDULING
     flowtime: int = -1
     makespan: int = -1
+    time: float = 0.0
 
     def cost(self):
         scheduling = [[] for i in range(self.g.n_processors)]

@@ -1,0 +1,17 @@
+Instance: instance1.txt	 Solver: GRASP_INTEN_DIVER	 time: 240.067	 Makespan: 205	 Flowtime: 8659
+Instance: instance2.txt	 Solver: GRASP_INTEN_DIVER	 time: 240.04	 Makespan: 250	 Flowtime: 11865
+Instance: instance3.txt	 Solver: GRASP_INTEN_DIVER	 time: 240.052	 Makespan: 105	 Flowtime: 3531
+Instance: instance4.txt	 Solver: GRASP_INTEN_DIVER	 time: 240.174	 Makespan: 134	 Flowtime: 7177
+Instance: instance5.txt	 Solver: GRASP_INTEN_DIVER	 time: 240.577	 Makespan: 200	 Flowtime: 18362
+
+Instance: instance1.txt	 Solver: GA	 time: 240.044	 Makespan: 238	 Flowtime: 10619
+Instance: instance2.txt	 Solver: GA	 time: 240.046	 Makespan: 278	 Flowtime: 14727
+Instance: instance3.txt	 Solver: GA	 time: 240.027	 Makespan: 123	 Flowtime: 4277
+Instance: instance4.txt	 Solver: GA	 time: 240.064	 Makespan: 165	 Flowtime: 8770
+Instance: instance5.txt	 Solver: GA	 time: 240.069	 Makespan: 256	 Flowtime: 24295
+
+Instance: instance1.txt	 Solver: GA_INTEN	 time: 240.024	 Makespan: 237	 Flowtime: 10422
+Instance: instance2.txt	 Solver: GA_INTEN	 time: 240.058	 Makespan: 281	 Flowtime: 14152
+Instance: instance3.txt	 Solver: GA_INTEN	 time: 240.025	 Makespan: 124	 Flowtime: 4191
+Instance: instance4.txt	 Solver: GA_INTEN	 time: 240.035	 Makespan: 164	 Flowtime: 8673
+Instance: instance5.txt	 Solver: GA_INTEN	 time: 240.208	 Makespan: 257	 Flowtime: 24334

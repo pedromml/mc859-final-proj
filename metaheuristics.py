@@ -110,6 +110,7 @@ def GRASP(g: TASK_SCHEDULING, execution_time: int, alpha: float, inten: bool = F
     incumbent_solution = None
 
     incumbent_solution = constructive_heuristic(alpha, g, inten)
+    incumbent_solution.time = 0
     pop_for_GA = deque([], 10)
     pop_for_GA.appendleft(incumbent_solution)
 
@@ -140,6 +141,7 @@ def GRASP(g: TASK_SCHEDULING, execution_time: int, alpha: float, inten: bool = F
         total_seconds = round(current_time - start_time, 3)
 
         if(incumbent_solution is None or new_sol.cost() < incumbent_solution.cost()):
+            new_sol.time = total_seconds
             # print(f"{total_seconds} -> makespan {new_sol.cost()} flowtime {new_sol.flowtime}")
             incumbent_solution = new_sol
             iterations_on_same_incumb = 0
@@ -374,6 +376,7 @@ def GA(g: TASK_SCHEDULING, execution_time: int, pop_size: float, pop_from_GRASP:
             if incumbent_solution is None or best_sol.cost() < incumbent_solution.cost():
                 # print(f"{total_seconds} -> makespan {best_sol.cost()} flowtime {best_sol.flowtime}")
                 incumbent_solution = best_sol
+                incumbent_solution.time = total_seconds
             else: # Se new_pop só tiver solutions piores que incumbent_solution, add incumb em new_pop
                 if worst_sol is not None:
                     new_pop.remove(worst_sol)

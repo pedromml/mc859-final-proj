@@ -86,7 +86,7 @@ def run(solver, total_seconds, instance):
     sol = main(instance, int(total_seconds), solver)
     end = time.time()
     total_time = round(end - start, 3)
-    print(f"Instance: {instance}\t Solver: {solver}\t time: {total_time}\t Makespan: {sol.cost()}\t Flowtime: {sol.flowtime}")
+    print(f"Instance: {instance}\t Solver: {solver}\t time: {sol.time}\t Makespan: {sol.cost()}\t Flowtime: {sol.flowtime}")
     # print(f"Solution task ordering {sol.tasks}")
 
 if __name__ == "__main__":
